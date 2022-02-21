@@ -1,0 +1,26 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: coderdave-web 
+spec:
+  replicas: #{REPLICAS}#
+  selector:
+    matchLabels:
+      app: coderdave-web
+  template:
+    metadata:
+      labels:
+        app: coderdave-web 
+    spec:
+      containers:
+        - name: coderdave-web 
+          image: acrdbtekdev.azurecr.io/coderdave-web
+          ports:
+          - containerPort: 8080
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: 500m
+            limits:
+              memory: "512Mi"
+              cpu: 1000m
